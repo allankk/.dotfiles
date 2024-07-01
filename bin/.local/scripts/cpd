@@ -1,0 +1,19 @@
+cpd() {
+    local project="$1"
+
+    if [ -z "$project" ]; then
+        echo "Usage: cpd <project_name>"
+        return 1
+    fi
+
+    local dirs=("$HOME/docker-containers/www" "$HOME/projects")
+
+    for dir in "${dirs[@]}"; do
+        if [ -d "$dir/$project" ]; then
+            cd "$dir/$project"
+            return
+        fi
+    done
+
+    echo "Project '$project' not found in any specified directories."
+}

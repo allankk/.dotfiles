@@ -1,6 +1,6 @@
+require("allan.lazy")
 require("allan.set")
 require("allan.remap")
-require("allan.lazy")
 
 -- fuzzy search keybinds
 --vim.api.nvim_set_keymap('n', '<c-P>',
