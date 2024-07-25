@@ -63,6 +63,8 @@ source $DOTFILES/zsh/.config/zsh_plugins/bd.zsh
 alias l='ls -laht --color=tty'
 alias lt='ls -ltr --color=tty'
 alias vim='nvim'
+# change this when intellij installed
+alias intellij="sh /opt/idea-IC-241.18034.62/bin/idea.sh"
 
 
 ## SYNTAX HIGHLIGHTING
@@ -73,3 +75,7 @@ source $DOTFILES/bin/.local/scripts/cpd
 
 export LC_ALL="en_US.UTF-8"
 export PATH="$PATH:/opt/nvim/"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
