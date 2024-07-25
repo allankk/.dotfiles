@@ -1,0 +1,6 @@
+[submodule "zsh/.config/zsh_plugins/zsh-syntax-highlighting"]
+	path = zsh/.config/zsh_plugins/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
