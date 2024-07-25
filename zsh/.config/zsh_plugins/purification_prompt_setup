@@ -213,6 +213,17 @@ prompt_purity_precmd() {
     print -P ''
 }
 
+git_relative_path() {
+    if command git rev-parse --is-inside-work-tree &> /dev/null; then
+        local git_root git_root_name
+        git_root=$(command git rev-parse --show-toplevel)
+        git_root_name=$(basename "$git_root")
+        echo -n "%F{white}%K{blue} $git_root_name %k%f $(realpath --relative-to="$git_root" "$PWD")"
+    else
+        echo -n "%~"
+    fi
+}
+
 prompt_purification_setup() {
     # Display git branch
 
@@ -235,13 +246,16 @@ prompt_purification_setup() {
 
     prompt_git_branch
     RPROMPT='$(prompt_git_info) $(git_prompt_status)'
-    PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+    #PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+    PROMPT=$'%F{white}$(git_relative_path) %B%F{blue}>%f%b '
 }
 
 prompt_purification_setup
 
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd prompt_purity_precmd
+
+    PROMPT=$'%F{white}$(git_relative_path) %B%F{blue}>%f%b '
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" %F{red}λ%f:"
     ZSH_THEME_GIT_PROMPT_DIRTY=""
@@ -259,7 +273,8 @@ prompt_purification_setup
 
     prompt_git_branch
     RPROMPT='$(prompt_git_info) $(git_prompt_status)'
-    PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+    #PROMPT=$'%F{white}%~ %B%F{blue}>%f%b '
+    PROMPT=$'%F{white}$(git_relative_path) %B%F{blue}>%f%b '
 }
 
 prompt_purification_setup

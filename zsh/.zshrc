@@ -73,3 +73,27 @@ source $DOTFILES/bin/.local/scripts/cpd
 
 export LC_ALL="en_US.UTF-8"
 export PATH="$PATH:/opt/nvim/"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## docker-containers
+export UID=$UID
+export PATH=/home/allan/docker-containers/bin:$PATH
+export XDEBUG_REMOTE_HOST=`ip -4 addr show scope global dev docker0 | grep inet | awk '{print \$2}' | cut -d / -f 1`
+export XDEBUG_REMOTE_PORT=9000
+
+## tmux main windows
+alias tmux-main='tmux new-session -d -s main \
+  \; split-window -h \
+  \; split-window -v \
+  \; select-pane -t 0 \
+  \; new-window \
+  \; send-keys "vim ~/notes/general/quicknotes.md" C-m \
+  \; split-window -h \
+  \; send-keys "vim ~/notes/x/acty-general.md" C-m \
+  \; select-pane -t 1 \
+  \; select-window -t 0 \
+  \; attach-session -t main'
+
