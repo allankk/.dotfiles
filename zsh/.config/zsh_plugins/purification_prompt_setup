@@ -218,7 +218,7 @@ git_relative_path() {
         local git_root git_root_name
         git_root=$(command git rev-parse --show-toplevel)
         git_root_name=$(basename "$git_root")
-        echo -n "%F{white}%K{blue} $git_root_name %k%f $(realpath --relative-to="$git_root" "$PWD")"
+        echo -n "%k%F{yellow}%F{black}%K{yellow} $git_root_name %k%F{yellow}%f%F{white} $(realpath --relative-to="$git_root" "$PWD")%f"
     else
         echo -n "%~"
     fi
