@@ -68,8 +68,12 @@ alias vim='nvim'
 ## SYNTAX HIGHLIGHTING
 source $DOTFILES/zsh/.config/zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-## RUN IN SHELL
-source $DOTFILES/bin/.local/scripts/cpd
+## Source all in scripts dir
+for script in $DOTFILES/bin/.local/scripts/*; do
+    if [ -f "$script" ]; then
+        source "$script"
+    fi
+done
 
 export LC_ALL="en_US.UTF-8"
 export PATH="$PATH:/opt/nvim/"

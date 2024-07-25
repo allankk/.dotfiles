@@ -1,0 +1,30 @@
+# Function to import a database with command line arguments
+import_db() {
+    # Check if both arguments are provided
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: import_db <database_name> <path_to_dump_file>"
+        return 1
+    fi
+
+    # Assign arguments to variables
+    db_name="$1"
+    dump_file="$2"
+
+    # Expand tilde to full path if necessary
+    dump_file=$(eval echo "$dump_file")
+
+    # Check if the dump file exists
+    if [ ! -f "$dump_file" ]; then
+        echo "Error: Dump file not found at $dump_file"
+        return 1
+    fi
+
+    # Create the database with utf8mb4 character set and utf8mb4_unicode_ci collation
+    docker exec -i mariadb mysql -uroot -proot -e "CREATE DATABASE ${db_name} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+
+    # Import the dump file into the created database
+    docker exec -i mariadb mysql -uroot -proot --init-command="SET SESSION FOREIGN_KEY_CHECKS=0;" --max_allowed_packet=107374181 "${db_name}" < "${dump_file}"
+
+    echo "Database import completed successfully."
+}
+
