@@ -1,5 +1,5 @@
 # Function to import a database with command line arguments
-import_db() {
+import_mysql() {
     # Check if both arguments are provided
     if [ "$#" -ne 2 ]; then
         echo "Usage: import_db <database_name> <path_to_dump_file>"

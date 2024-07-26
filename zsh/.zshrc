@@ -94,10 +94,11 @@ alias tmux-main='tmux new-session -d -s main \
   \; split-window -v \
   \; select-pane -t 0 \
   \; new-window \
-  \; send-keys "vim ~/notes/general/quicknotes.md" C-m \
-  \; split-window -h \
-  \; send-keys "vim ~/notes/x/acty-general.md" C-m \
+  \; send-keys "cd ~/notes && vim general/quicknotes.md" C-m \
   \; select-pane -t 1 \
   \; select-window -t 0 \
   \; attach-session -t main'
 
+
+## gnome settings
+source $DOTFILES/gnome/gnome-settings
