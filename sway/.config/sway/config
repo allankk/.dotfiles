@@ -31,12 +31,11 @@ output HDMI-A-1 resolution 2560x1440 position 1920,0
 output eDP-1 resolution 1920x1080 position 0,0
 
 ### Set workspaces to monitors
-#output eDP-1 workspace 10
-#output HDMI-A-1 workspace 1
-#output HDMI-A-1 workspace 2
-
 workspace 1 output HDMI-A-1
 workspace 2 output HDMI-A-1
+workspace 3 output HDMI-A-1
+workspace 4 output HDMI-A-1
+workspace 5 output HDMI-A-1
 workspace 10 output eDP-1
 
 ### Open applications in workspaces on startup
