@@ -26,4 +26,7 @@ vim.cmd[[
     endfunction
 ]]
 
+vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg=0, bg=LightGrey })
+vim.api.nvim_set_hl(0, "Normal", { ctermfg=White,  ctermbg=NONE })
+
 vim.g.netrw_liststyle = 3
