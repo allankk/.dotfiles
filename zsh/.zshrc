@@ -102,3 +102,10 @@ alias tmux-main='tmux new-session -d -s main \
 
 ## gnome settings
 source $DOTFILES/gnome/gnome-settings
+
+## default browser
+BROWSER=firefox
+
+
+
+
