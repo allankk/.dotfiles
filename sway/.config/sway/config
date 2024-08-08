@@ -26,6 +26,9 @@ include /etc/sway/config-vars.d/*
 ### Wallpaper
 output * bg /usr/share/backgrounds/Fuji_san_by_amaral.png fill
 
+### AutoTiling
+exec_always autotiling
+
 ### Output configuration (swaymsg -t get_outputs)
 output HDMI-A-1 resolution 2560x1440 position 1920,0
 output eDP-1 resolution 1920x1080 position 0,0
@@ -226,5 +229,12 @@ default_border none
 
 ### Screen sharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+### Sway Notification Center
+exec swaync
+bindsym $mod+n exec swaync-client -t -sw
+
+### flameshot fix for multi-monitor setup
+for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
 
 include /etc/sway/config.d/*
