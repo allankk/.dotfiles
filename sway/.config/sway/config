@@ -20,6 +20,7 @@ set $term gnome-terminal
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $menu rofi -show drun | xargs swaymsg exec --
+set $rofipowermenu rofi -show power-menu -modi "power-menu:~/.dotfiles/sway/.config/rofi/rofi-power-menu --confirm=''"
 
 include /etc/sway/config-vars.d/*
 
@@ -89,6 +90,7 @@ input * {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+Shift+d exec $rofipowermenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
