@@ -19,14 +19,28 @@ all=(shutdown reboot suspend hibernate logout lockscreen)
 show=("${all[@]}")
 
 function lock_screen {
-    ## Capture screenshots of each connected monitor
-    grim -o DP-1 /tmp/DP-1.png
-    grim -o eDP-1 /tmp/eDP-1.png
+    ## Get a list of connected monitors
+    monitors=$(swaymsg -t get_outputs | jq -r '.[] | select(.active) | .name')
 
-    ## Apply a blur effect to each screenshot
-    convert /tmp/eDP-1.png -blur 0x10 /tmp/blur-eDP-1.png
-    convert /tmp/DP-1.png -blur 0x10 /tmp/blur-DP-1.png
-    swaylock -i /tmp/blur-DP-1.png -i DP-1:/tmp/blur-DP-1.png -i eDP-1:/tmp/blur-eDP-1.png
+    ## Iterate over each connected monitor
+    for monitor in $monitors; do
+        ## Capture a screenshot for each connected monitor
+        grim -o "$monitor" "/tmp/$monitor.png"
+        
+        ## Apply a blur effect to the screenshot
+        convert "/tmp/$monitor.png" -blur 0x10 "/tmp/blur-$monitor.png"
+    done
+
+    ## Build the swaylock command dynamically
+    swaylock_cmd="swaylock"
+    for monitor in $monitors; do
+        swaylock_cmd+=" -i $monitor:/tmp/blur-$monitor.png"
+    done
+
+    swaylock_cmd+=" -c ~/.config/swaylock/config"
+
+    ## Run the swaylock command
+    eval $swaylock_cmd
 }
 
 declare -A texts
