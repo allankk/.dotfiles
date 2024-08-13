@@ -58,8 +58,8 @@ local config = {
             path = "/usr/lib/jvm/java-17-openjdk-amd64",
           },
           {
-            name = "JavaSE-19",
-            path = "/usr/lib/jvm/java-19-openjdk-amd64",
+            name = "JavaSE-21",
+            path = "/usr/lib/jvm/java-21-openjdk-amd64",
           }
         }
       },

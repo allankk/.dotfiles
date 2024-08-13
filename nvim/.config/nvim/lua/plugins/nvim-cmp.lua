@@ -38,6 +38,8 @@ return {
       },
       completion = {
         completeopt = 'menu,menuone,noinsert',
+        keyword_length = 3,
+        max_item_count = 5,
       },
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion

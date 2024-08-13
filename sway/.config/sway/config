@@ -239,4 +239,7 @@ bindsym $mod+n exec swaync-client -t -sw
 ### flameshot fix for multi-monitor setup
 for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
 
+### swappy for screenshot tool
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+
 include /etc/sway/config.d/*

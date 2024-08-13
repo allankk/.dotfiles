@@ -28,3 +28,6 @@ vim.o.splitright    = true
 
 -- set markdown preview theme to light
 vim.g.mkdp_theme = 'light'
+
+-- create a signcolumn (for lsp/git etc) so text isn't pushed to the right
+vim.wo.signcolumn = "yes"
