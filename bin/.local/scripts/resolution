@@ -1,0 +1,44 @@
+resolution() {
+    # Set monitor names
+    local MONITOR_0="eDP-1"
+    local MONITOR_1="HDMI-A-1"
+
+    # Resolutions for both monitors
+    local RESOLUTIONS=("1920x1080" "1920x1200" "2560x1440")
+
+    # Function to change resolution
+    change_resolution() {
+        local monitor=$1
+        local resolution_index=$2
+
+        # Check if resolution index is valid
+        if (( resolution_index > ${#RESOLUTIONS[@]} )); then
+            echo "Invalid resolution index! Choose 0 for 1920x1080, 1 for 1920x1200, or 2 for 2560x1440."
+            return 1
+        fi
+
+        # Set resolution for the correct monitor
+        if [[ "$monitor" = "0" ]]; then
+            swaymsg "output $MONITOR_0 resolution ${RESOLUTIONS[resolution_index]}"
+        elif [[ "$monitor" = "1" ]]; then
+            echo "1"
+            echo $MONITOR_1
+            echo ${RESOLUTIONS[resolution_index]}
+            echo "2"
+            swaymsg "output $MONITOR_1 resolution ${RESOLUTIONS[resolution_index]}"
+        else
+            echo "Invalid monitor number! Use 0 for $MONITOR_0 or 1 for $MONITOR_1."
+            return 1
+        fi
+    }
+
+    # Check if the correct number of arguments are passed
+    if [[ $# -ne 2 ]]; then
+        echo "Usage: resolution monitor_number resolution_index"
+        echo "Monitor numbers: 0 = $MONITOR_0, 1 = $MONITOR_1"
+        echo "Resolutions available: 1 = 1920x1080, 2 = 1920x1200, 3 = 2560x1440"
+        return 1
+    fi
+
+    change_resolution $1 $2
+}

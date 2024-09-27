@@ -47,6 +47,12 @@ exec swaymsg "workspace 1; exec gnome-terminal"
 exec swaymsg "workspace 2; exec firefox"
 
 ### Input configuration (swaymsg -t get_inputs)
+input 1267:13:Elan_Touchpad {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
 input 1133:45108:Logitech_MX_Master_3S {
     natural_scroll disabled
     accel_profile "flat"
@@ -153,7 +159,11 @@ input * {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+    # Move workspace to left or right output
+    bindsym $mod+Control+Shift+$right move workspace to output right
+    bindsym $mod+Control+Shift+$left move workspace to output left
     # Note: workspaces can have any name you want, not just numbers.
+
     # We just use 1-10 as the default.
 #
 # Layout stuff:
@@ -233,13 +243,16 @@ default_border none
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 ### Sway Notification Center
-exec swaync
+exec swaync gui
 bindsym $mod+n exec swaync-client -t -sw
 
 ### flameshot fix for multi-monitor setup
 for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
 
 ### swappy for screenshot tool
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+#bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+# swappy for screenshot tool
+bindsym $mod+Shift+s exec flameshot gui
+
 
 include /etc/sway/config.d/*
