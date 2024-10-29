@@ -250,8 +250,9 @@ bindsym $mod+n exec swaync-client -t -sw
 for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
 
 ### swappy for screenshot tool
-#bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
-# swappy for screenshot tool
+bindsym $mod+Control+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+
+# flameshot for screen
 bindsym $mod+Shift+s exec flameshot gui
 
 
